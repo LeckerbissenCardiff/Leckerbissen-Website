@@ -1,6 +1,9 @@
 async function fetchPosts() {
     try {
-        const response = await fetch('https://leckerbissencardiff.wordpress.com/feed/');
+        const response = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://leckerbissencardiff.wordpress.com/feed/'));
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         const text = await response.text();
         const parser = new DOMParser();
         const xml = parser.parseFromString(text, 'application/xml');
@@ -32,6 +35,7 @@ async function fetchPosts() {
 
             container.appendChild(postElement);
         });
+        console.log('Posts fetched and displayed successfully.');
     } catch (error) {
         console.error('Error fetching posts:', error);
     }
