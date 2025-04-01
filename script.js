@@ -1,58 +1,54 @@
-// Updated script.js with RSS to JSON API for reliable fetching
-
-document.addEventListener('DOMContentLoaded', function () {
-const feedUrl = 'https://bold-cherry-4b52.reefcc26.workers.dev/'; // New Cloudflare Worker URL
-    const rssToJsonApi = 'https://api.rss2json.com/v1/api.json?rss_url=';
-
-    function fetchPosts() {
-        fetch(`${rssToJsonApi}${encodeURIComponent(feedUrl)}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (!data || !data.items || data.items.length === 0) {
-                    throw new Error('No posts found in the feed');
-                }
-                displayPosts(data.items);
-            })
-            .catch(error => {
-                console.error('Error loading feed:', error);
-                document.querySelector('#post-container').innerHTML = '<p>Error loading posts. Please try again later.</p>';
-            });
-    }
-
-    function displayPosts(items) {
-        const postContainer = document.querySelector('#post-container');
-        postContainer.innerHTML = '';
-
-        items.forEach(item => {
+async function fetchPosts() {
+    try {
+        // Use CORS proxy to access the RSS feed
+        const corsProxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://leckerbissencardiff.wordpress.com/feed/';
+        
+        const response = await fetch(corsProxyUrl);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (!data.items || data.items.length === 0) {
+            console.error('No posts found.');
+            return;
+        }
+        
+        const container = document.getElementById('post-container');
+        container.innerHTML = '';
+        
+        data.items.forEach(item => {
             const title = item.title;
-            const link = item.link;
-            const pdfUrl = extractPdfUrl(item.description) || link;
-            const imageUrl = item.thumbnail || 'default.jpg';
+            const content = item.content;
+            const imageUrl = item.thumbnail || 'placeholder.jpg';
+            
+            // Extract the first PDF link from the content
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+            const pdfLinkElement = tempDiv.querySelector('a[href$=".pdf"]');
+            const pdfLink = pdfLinkElement ? pdfLinkElement.href : item.link;
 
             const postElement = document.createElement('div');
-            postElement.classList.add('post');
+            postElement.className = 'post';
+            
             postElement.innerHTML = `
-                <a href="${pdfUrl}" target="_blank">
+                <a href="${pdfLink}" target="_blank">
                     <div class="image-wrapper">
-                        <img src="${imageUrl}" alt="${title}">
-                        <div class="hover-text">${title}</div>
+                        <img src="${imageUrl}" alt="${title}" />
+                        <div class="post-title">${title}</div>
                     </div>
                 </a>
             `;
-            postContainer.appendChild(postElement);
+
+            container.appendChild(postElement);
         });
+        console.log('Posts successfully fetched and displayed.');
+    } catch (error) {
+        console.error('Error fetching posts:', error);
     }
+}
 
-    function extractPdfUrl(description) {
-        const pdfRegex = /https?:\/\/.*?\.pdf/;
-        const match = description.match(pdfRegex);
-        return match ? match[0] : null;
-    }
-
-    fetchPosts();
-});
+// Fetch posts immediately when the page is loaded
+document.addEventListener('DOMContentLoaded', fetchPosts);
