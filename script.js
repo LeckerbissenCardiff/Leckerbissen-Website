@@ -33,8 +33,10 @@ async function fetchPosts() {
             
             postElement.innerHTML = `
                 <a href="${pdfLink}" target="_blank">
-                    <img src="${imageUrl}" alt="${title}">
-                    <div class="post-title">${title}</div>
+                    <div class="image-wrapper">
+                        <img src="${imageUrl}" alt="${title}">
+                        <div class="post-title">${title}</div>
+                    </div>
                 </a>
             `;
 
