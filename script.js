@@ -48,8 +48,5 @@ async function fetchPosts() {
     }
 }
 
-// Fetch posts every hour
-setInterval(fetchPosts, 60 * 60 * 1000);
-
-// Initial load
+// Initial load when page is accessed
 fetchPosts();
