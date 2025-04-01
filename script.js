@@ -1,7 +1,7 @@
 // Updated script.js with RSS to JSON API for reliable fetching
 
 document.addEventListener('DOMContentLoaded', function () {
-    const feedUrl = 'https://leckerbissencardiff.wordpress.com/feed/';
+const feedUrl = 'https://bold-cherry-4b52.reefcc26.workers.dev/'; // New Cloudflare Worker URL
     const rssToJsonApi = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
     function fetchPosts() {
