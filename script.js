@@ -1,7 +1,9 @@
 async function fetchPosts() {
     try {
-        const cacheBust = new Date().getTime(); // Add cache-busting timestamp
-        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://leckerbissencardiff.wordpress.com/feed/&cacheBust=${cacheBust}`;
+        // Use a CORS proxy to fetch the RSS feed
+        const corsProxyUrl = 'https://corsproxy.io/?';
+        const apiUrl = `${corsProxyUrl}https://api.rss2json.com/v1/api.json?rss_url=https://leckerbissencardiff.wordpress.com/feed/`;
+        
         const response = await fetch(apiUrl);
         
         if (!response.ok) {
