@@ -1,54 +1,61 @@
-async function fetchPosts() {
-    try {
-        // Use CORS proxy to access the RSS feed
-        const corsProxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://leckerbissencardiff.wordpress.com/feed/';
-        
-        const response = await fetch(corsProxyUrl);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        if (!data.items || data.items.length === 0) {
-            console.error('No posts found.');
-            return;
-        }
-        
-        const container = document.getElementById('post-container');
-        container.innerHTML = '';
-        
-        data.items.forEach(item => {
-            const title = item.title;
-            const content = item.content;
-            const imageUrl = item.thumbnail || 'placeholder.jpg';
-            
-            // Extract the first PDF link from the content
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = content;
-            const pdfLinkElement = tempDiv.querySelector('a[href$=".pdf"]');
-            const pdfLink = pdfLinkElement ? pdfLinkElement.href : item.link;
+document.addEventListener('DOMContentLoaded', function () {
+    const feedUrl = 'https://leckerbissencardiff.wordpress.com/feed/';
+    const corsProxy = 'https://api.allorigins.win/get?url='; // More stable CORS proxy
+
+    function fetchPosts() {
+        fetch(`${corsProxy}${encodeURIComponent(feedUrl)}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (!data || !data.contents) {
+                    console.error('No data received from feed');
+                    return;
+                }
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(data.contents, 'application/xml');
+                displayPosts(xml);
+            })
+            .catch(error => {
+                console.error('Error loading feed:', error);
+                document.querySelector('#post-container').innerHTML = '<p>Error loading posts. Please try again later.</p>';
+            });
+    }
+
+    function displayPosts(xml) {
+        const items = xml.querySelectorAll('item');
+        const postContainer = document.querySelector('#post-container');
+        postContainer.innerHTML = '';
+
+        items.forEach(item => {
+            const title = item.querySelector('title').textContent;
+            const link = item.querySelector('link').textContent;
+            const enclosure = item.querySelector('enclosure');
+            const pdfUrl = enclosure ? enclosure.getAttribute('url') : link;
+            const imageUrl = extractImageFromDescription(item.querySelector('description').textContent);
 
             const postElement = document.createElement('div');
-            postElement.className = 'post';
-            
+            postElement.classList.add('post');
             postElement.innerHTML = `
-                <a href="${pdfLink}" target="_blank">
+                <a href="${pdfUrl}" target="_blank">
                     <div class="image-wrapper">
-                        <img src="${imageUrl}" alt="${title}" />
-                        <div class="post-title">${title}</div>
+                        <img src="${imageUrl}" alt="${title}">
+                        <div class="hover-text">${title}</div>
                     </div>
                 </a>
             `;
-
-            container.appendChild(postElement);
+            postContainer.appendChild(postElement);
         });
-        console.log('Posts successfully fetched and displayed.');
-    } catch (error) {
-        console.error('Error fetching posts:', error);
     }
-}
 
-// Fetch posts immediately when the page is loaded
-document.addEventListener('DOMContentLoaded', fetchPosts);
+    function extractImageFromDescription(description) {
+        const imgRegex = /<img[^>]+src="([^"]+)"/;
+        const match = description.match(imgRegex);
+        return match ? match[1] : 'default.jpg'; // Use default if no image found
+    }
+
+    fetchPosts();
+});
