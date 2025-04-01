@@ -1,7 +1,7 @@
 async function fetchPosts() {
     try {
         // Use CORS proxy to access the RSS feed
-        const corsProxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://leckerbissencardiff.wordpress.com/feed/';
+        const corsProxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://leckerbissencardiff.wordpress.com/feed/&count=50';
         
         const response = await fetch(corsProxyUrl);
         
