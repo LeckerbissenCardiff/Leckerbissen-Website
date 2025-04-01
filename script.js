@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const feedUrl = 'https://leckerbissencardiff.wordpress.com/feed/';
-    const corsProxy = 'https://api.allorigins.win/get?url='; // More stable CORS proxy
+    const corsProxy = 'https://thingproxy.freeboard.io/fetch/'; // Using more stable proxy
 
     function fetchPosts() {
         fetch(`${corsProxy}${encodeURIComponent(feedUrl)}`)
@@ -8,15 +8,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.json();
+                return response.text();
             })
             .then(data => {
-                if (!data || !data.contents) {
-                    console.error('No data received from feed');
-                    return;
-                }
                 const parser = new DOMParser();
-                const xml = parser.parseFromString(data.contents, 'application/xml');
+                const xml = parser.parseFromString(data, 'application/xml');
+                if (!xml.querySelector('item')) {
+                    throw new Error('No posts found in the feed');
+                }
                 displayPosts(xml);
             })
             .catch(error => {
