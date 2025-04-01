@@ -1,27 +1,26 @@
 async function fetchPosts() {
     try {
-        const response = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://leckerbissencardiff.wordpress.com/feed/'));
+        const apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://leckerbissencardiff.wordpress.com/feed/';
+        const response = await fetch(apiUrl);
+        
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        const text = await response.text();
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(text, 'application/xml');
         
-        const items = xml.querySelectorAll('item');
+        const data = await response.json();
+        
+        if (!data.items || data.items.length === 0) {
+            console.error('No posts found.');
+            return;
+        }
+        
         const container = document.getElementById('post-container');
         container.innerHTML = '';
         
-        items.forEach(item => {
-            const title = item.querySelector('title').textContent;
-            const link = item.querySelector('link').textContent;
-            const contentEncoded = item.querySelector('content\:encoded')?.textContent || '';
-            
-            // Extract the first image from content
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = contentEncoded;
-            const imgElement = tempDiv.querySelector('img');
-            const imageUrl = imgElement ? imgElement.src : 'placeholder.jpg';
+        data.items.forEach(item => {
+            const title = item.title;
+            const link = item.link;
+            const imageUrl = item.thumbnail || 'placeholder.jpg';
             
             const postElement = document.createElement('div');
             postElement.className = 'post';
