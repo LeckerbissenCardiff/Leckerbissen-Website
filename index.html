@@ -1,13 +1,101 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Leckerbissen Cardiff - Latest Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #content {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+        a {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0073e6;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #005bb5;
+        }
+    </style>
 </head>
 <body>
-    <div id="post-container" class="post-grid">
-        <!-- Posts will be inserted here dynamically -->
+
+    <h1>Latest Update from Leckerbissen Cardiff</h1>
+    <div id="content">
+        <img id="postImage" src="" alt="Post Image">
+        <a id="downloadLink" href="#" target="_blank">Download Menu</a>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // URL of the WordPress RSS Feed
+        const feedUrl = "https://leckerbissencardiff.wordpress.com/feed/";
+
+        async function fetchRSSData() {
+            try {
+                const response = await fetch(feedUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const rssText = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(rssText, "text/xml");
+
+                // Get the latest item from the feed
+                const latestItem = xmlDoc.querySelector("item");
+                if (latestItem) {
+                    const title = latestItem.querySelector("title").textContent;
+                    const description = latestItem.querySelector("description").textContent;
+
+                    // Extract image from content:encoded or media:content (if available)
+                    let imageUrl = "";
+                    const contentEncoded = latestItem.querySelector("content\:encoded, encoded");
+                    if (contentEncoded && contentEncoded.textContent.includes("<img")) {
+                        const tempDiv = document.createElement("div");
+                        tempDiv.innerHTML = contentEncoded.textContent;
+                        const imgTag = tempDiv.querySelector("img");
+                        if (imgTag) {
+                            imageUrl = imgTag.src;
+                        }
+                    }
+
+                    // Extract download link from description or custom field if available
+                    let downloadLink = "#"; // Default fallback
+                    const linkMatch = description.match(/href="(.*?)"/); // Look for a link
+                    if (linkMatch) {
+                        downloadLink = linkMatch[1];
+                    }
+
+                    // Update content on the page
+                    document.getElementById("postImage").src = imageUrl || "placeholder.jpg";
+                    document.getElementById("postImage").alt = title;
+                    document.getElementById("downloadLink").href = downloadLink;
+                    document.getElementById("downloadLink").innerText = `Download Menu`;
+                } else {
+                    console.log("No items found in RSS feed.");
+                }
+            } catch (error) {
+                console.error("Error fetching RSS data:", error);
+            }
+        }
+
+        // Fetch data when the page loads
+        document.addEventListener("DOMContentLoaded", fetchRSSData);
+    </script>
+
 </body>
 </html>
