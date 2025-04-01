@@ -11,16 +11,16 @@ body {
 #post-container {
     width: 70%;
     margin-top: 20px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
-    align-items: center;
+    justify-items: center;
 }
 
 .post {
     position: relative;
     width: 100%;
-    max-width: 600px;
+    max-width: 100%;
     border: 2.5px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
@@ -54,6 +54,7 @@ body {
     padding: 10px 20px;
     font-size: 18px;
     color: #333;
+    font-family: Helvetica, Arial, sans-serif;
     font-weight: bold;
     text-align: center;
     opacity: 0;
