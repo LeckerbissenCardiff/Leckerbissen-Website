@@ -1,10 +1,9 @@
 async function fetchPosts() {
     try {
-        // Use a CORS proxy to fetch the RSS feed
-        const corsProxyUrl = 'https://corsproxy.io/?';
-        const apiUrl = `${corsProxyUrl}https://api.rss2json.com/v1/api.json?rss_url=https://leckerbissencardiff.wordpress.com/feed/`;
+        // Use CORS proxy to access the RSS feed
+        const corsProxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://leckerbissencardiff.wordpress.com/feed/';
         
-        const response = await fetch(apiUrl);
+        const response = await fetch(corsProxyUrl);
         
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -37,7 +36,7 @@ async function fetchPosts() {
             postElement.innerHTML = `
                 <a href="${pdfLink}" target="_blank">
                     <div class="image-wrapper">
-                        <img src="${imageUrl}" alt="${title}">
+                        <img src="${imageUrl}" alt="${title}" />
                         <div class="post-title">${title}</div>
                     </div>
                 </a>
@@ -45,11 +44,11 @@ async function fetchPosts() {
 
             container.appendChild(postElement);
         });
-        console.log('Posts with PDF links fetched and displayed successfully.');
+        console.log('Posts successfully fetched and displayed.');
     } catch (error) {
         console.error('Error fetching posts:', error);
     }
 }
 
-// Initial load when page is accessed
-fetchPosts();
+// Fetch posts immediately when the page is loaded
+document.addEventListener('DOMContentLoaded', fetchPosts);
