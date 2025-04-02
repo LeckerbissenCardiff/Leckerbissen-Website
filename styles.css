@@ -41,17 +41,6 @@ h1 {
     margin-bottom: 30px;
 }
 
-.gallery {
-    --image-size: 200px;
-    --gap-size: 15px;
-    --scale-factor: 1.1;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(var(--image-size), 1fr));
-    gap: var(--gap-size);
-    padding: var(--gap-size);
-    justify-content: center;
-}
-
 #post-container {
     width: 70%;
     margin-bottom: 40px;
