@@ -1,9 +1,3 @@
-<style>
-  img {
-    background-color: white;
-  }
-</style>
-
 <br clear="both">
 
 <div align="center">
