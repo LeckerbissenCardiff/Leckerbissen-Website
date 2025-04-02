@@ -1,7 +1,7 @@
 <br clear="both">
 
 <div align="center">
-  <img height="150" src="https://leckerbissencardiff.wordpress.com/wp-content/uploads/2025/04/leckerbissen-logo.png https://leckerbissencardiff.wordpress.com/wp-content/uploads/2025/04/leckerbissen-logo.png"  />
+  <img height="150" src="https://leckerbissencardiff.wordpress.com/wp-content/uploads/2025/04/leckerbissen-logo.png"/>
 </div>
 
 ###
