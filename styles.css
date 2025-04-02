@@ -101,15 +101,15 @@ h1 {
     max-width: 90%;
 }
 
-.post:hover .post:active {
+.post:hover {
     transform: scale(1.02);
 }
 
-.post:hover .post:active .image-wrapper img {
+.post:hover .image-wrapper img {
     filter: blur(5px) brightness(80%);
 }
 
-.post:hover .post:active .post-title {
+.post:hover .post-title {
     opacity: 1;
 }
 
