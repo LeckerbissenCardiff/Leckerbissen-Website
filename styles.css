@@ -60,10 +60,6 @@ h1 {
     align-items: center;
 }
 
-.post:hover {
-    transform: scale(1.02);
-}
-
 .post a {
     display: block;
     width: 100%;
@@ -105,11 +101,15 @@ h1 {
     max-width: 90%;
 }
 
-.post:hover .image-wrapper img {
+.post:hover .post:active {
+    transform: scale(1.02);
+}
+
+.post:hover .post:active .image-wrapper img {
     filter: blur(5px) brightness(80%);
 }
 
-.post:hover .post-title {
+.post:hover .post:active .post-title {
     opacity: 1;
 }
 
