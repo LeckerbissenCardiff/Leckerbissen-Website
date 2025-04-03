@@ -1,6 +1,5 @@
 async function fetchPosts() {
     try {
-        // Use CORS proxy to access the RSS feed
         const corsProxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://leckerbissencardiff.wordpress.com/feed/';
         
         const response = await fetch(corsProxyUrl);
@@ -18,12 +17,22 @@ async function fetchPosts() {
         
         const container = document.getElementById('post-container');
         container.innerHTML = '';
-        
+
         data.items.forEach(item => {
             const title = item.title;
             const content = item.content;
-            const imageUrl = item.thumbnail || 'placeholder.jpg';
-            
+            let imageUrl = item.thumbnail || 'placeholder.jpg'; // Default placeholder
+
+            // Extract image from content if thumbnail is missing
+            if (!item.thumbnail) {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = content;
+                const imgElement = tempDiv.querySelector('img');
+                if (imgElement) {
+                    imageUrl = imgElement.src;
+                }
+            }
+
             // Extract the first PDF link from the content
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = content;
@@ -44,11 +53,11 @@ async function fetchPosts() {
 
             container.appendChild(postElement);
         });
+
         console.log('Posts successfully fetched and displayed.');
     } catch (error) {
         console.error('Error fetching posts:', error);
     }
 }
 
-// Fetch posts immediately when the page is loaded
 document.addEventListener('DOMContentLoaded', fetchPosts);
