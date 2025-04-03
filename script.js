@@ -20,9 +20,8 @@ async function fetchPosts() {
         data.items.forEach(item => {
             const title = item.title;
             const content = item.content;
-            let imageUrl = 'placeholder.jpg'; // Default placeholder
+            let imageUrl = 'placeholder.jpg'; // There is no 'placeholder.jpg' at the moment
 
-            // Extract the first image from content
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = content;
             const imgElement = tempDiv.querySelector('img');
@@ -30,7 +29,6 @@ async function fetchPosts() {
                 imageUrl = imgElement.src;
             }
 
-            // Extract the first PDF link from the content
             const pdfLinkElement = tempDiv.querySelector('a[href$=".pdf"]');
             const pdfLink = pdfLinkElement ? pdfLinkElement.href : item.link;
 
@@ -56,3 +54,5 @@ async function fetchPosts() {
 }
 
 document.addEventListener('DOMContentLoaded', fetchPosts);
+
+// Made by Reef, BA Modern History and German 2019 - 2025
