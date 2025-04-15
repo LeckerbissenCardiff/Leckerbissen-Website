@@ -125,4 +125,10 @@ footer {
     line-height: 1.5;
 }
 
+@media (max-width: 768px) {
+    #logo {
+        width: 95%;
+    }
+}
+
 /* Made by Reef, BA Modern History and German 2019 - 2025 */
