@@ -127,7 +127,9 @@ footer {
 
 @media (max-width: 768px) {
     #logo {
+        max-width: 100%;
         width: 95%;
+        height: auto;
     }
 }
 
