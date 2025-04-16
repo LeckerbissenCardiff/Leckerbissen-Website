@@ -55,4 +55,20 @@ async function fetchPosts() {
 
 document.addEventListener('DOMContentLoaded', fetchPosts);
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const banner = document.getElementById("cookie-banner");
+    const okBtn = document.getElementById("cookie-ok-btn");
+    
+    if (!localStorage.getItem("cookieConsent")) {
+        banner.style.display = "flex";
+    }
+    
+    okBtn.addEventListener("click", function () {
+        localStorage.setItem("cookieConsent", "true")
+            banner.style.display = "none";
+    });
+});
+
+
 // Made by Reef, BA Modern History and German 2019 - 2025
