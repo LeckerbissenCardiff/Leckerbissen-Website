@@ -149,7 +149,7 @@ footer {
 }
 
 .cookie-ok-btn {
-    background-color: #f2efe6;
+    background-color: #f5f5f5;
     color: black;
     border: none;
     padding: 5px 10px;
@@ -157,6 +157,9 @@ footer {
     cursor: pointer;
 }
 
+.cookie-ok-btn:hover {
+    background-color: #dcdcdc;
+}
 
 @media (max-width: 828px) {
     header {
@@ -182,6 +185,16 @@ footer {
         width: 50%;
         height: auto;
     }
+
+    .cookie-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .cookie-message, .cookie-ok-btn {
+        font-size: 2rem;
+    }
+    
 }
 
 /* Made by Reef, BA Modern History and German 2019 - 2025 */
