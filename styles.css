@@ -148,12 +148,8 @@ footer {
     margin-right: 10px;
 }
 
-.cookie-text {
-    margin-right: 20px;
-}
-
 .cookie-ok-btn {
-    margin-left: auto;
+    margin-left: 10px;
     background-color: #f2efe6;
     color: black;
     border: none;
