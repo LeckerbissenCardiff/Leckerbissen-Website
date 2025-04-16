@@ -128,7 +128,9 @@ footer {
 /* Cookie Banner Styles */
 .cookie-banner {
     position: fixed;
+    display: flex;
     align: centre;
+    gap: 10px;
     bottom: 20px;
     background-color: white;
     color: black;
@@ -145,11 +147,9 @@ footer {
 .cookie-icon {
     width: 24px;
     height: 24px;
-    margin-right: 10px;
 }
 
 .cookie-ok-btn {
-    margin-left: 10px;
     background-color: #f2efe6;
     color: black;
     border: none;
