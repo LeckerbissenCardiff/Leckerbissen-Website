@@ -70,5 +70,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
 // Made by Reef, BA Modern History and German 2019 - 2025
