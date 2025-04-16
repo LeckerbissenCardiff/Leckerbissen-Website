@@ -127,35 +127,39 @@ footer {
 
 /* Cookie Banner Styles */
 .cookie-banner {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background-color: white;
-  color: black;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  display: none;
-  align-items: center;
-  z-index: 9999;
-  max-width: 90%;
+    position: fixed;
+    align: centre;
+    bottom: 20px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    display: none;
+    align-items: center;
+    z-index: 9999;
+    max-width: 90%;
 }
 
 .cookie-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.cookie-text {
+    margin-right: 20px;
 }
 
 .cookie-ok-btn {
-  margin-left: auto;
-  background-color: #f2efe6;
-  color: black;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
+    margin-left: auto;
+    background-color: #f2efe6;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 
