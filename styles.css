@@ -191,6 +191,11 @@ footer {
         height: 48px;
     }
 
+    cookie-ok-button {
+        padding: 10px 20px;
+        border-radius: 10px;
+    }
+        
     .cookie-message, .cookie-ok-btn {
         font-size: 2rem;
     }
