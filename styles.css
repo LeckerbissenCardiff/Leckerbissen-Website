@@ -186,6 +186,11 @@ footer {
         height: auto;
     }
 
+    #post-container {
+        grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
+        gap: 40px;
+    }
+
     .cookie-icon {
         width: 48px;
         height: 48px;
