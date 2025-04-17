@@ -191,6 +191,11 @@ footer {
         gap: 40px;
     }
 
+    .post-title {
+        padding: 20px 40px;
+        font-size: 36px;
+    }
+        
     .cookie-icon {
         width: 48px;
         height: 48px;
