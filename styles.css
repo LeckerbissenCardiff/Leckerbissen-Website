@@ -29,13 +29,13 @@ header {
 
 #logo {
     max-width: 100%;
-    width: 70%;
+    width: 50%;
     height: auto;
 }
 
 h1 {
     font-family: 'BerlinType';
-    font-size: clamp(1rem, calc(2.8vw), 3.2rem);
+    font-size: clamp(1rem, calc(2vw), 3.2rem);
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 30px;
@@ -171,14 +171,13 @@ footer {
         width: 100%;
         height: auto;
     }
+    
+    h1 {
+        font-size: clamp(1rem, calc(3vw), 6rem);
+    }
 }
 
 @media  (min-width: 2560px) {
-    #logo { 
-        max-width: 100%;
-        width: 50%;
-        height: auto;
-    }
 
     #post-container {
         grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
@@ -213,7 +212,6 @@ footer {
     p, .cookie-message, .cookie-ok-btn {
         font-size: 2rem;
     }
-    
 }
 
 /* Made by Reef, BA Modern History and German 2019 - 2025 */
