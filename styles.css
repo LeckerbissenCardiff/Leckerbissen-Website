@@ -217,7 +217,7 @@ footer {
         border-radius: 10px;
     }
         
-    .cookie-message, .cookie-ok-btn {
+    p, .cookie-message, .cookie-ok-btn {
         font-size: 2rem;
     }
     
