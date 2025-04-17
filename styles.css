@@ -195,6 +195,11 @@ footer {
         padding: 20px 40px;
         font-size: 36px;
     }
+
+    footer {
+        font-size: 2rem;
+        max-width: 1600px;
+    }
         
     .cookie-icon {
         width: 48px;
@@ -212,7 +217,7 @@ footer {
         border-radius: 10px;
     }
         
-    footer, .cookie-message, .cookie-ok-btn {
+    .cookie-message, .cookie-ok-btn {
         font-size: 2rem;
     }
     
