@@ -218,4 +218,10 @@ footer {
     
 }
 
+@media (min-width: 3840px) {
+    h1 {
+        font-size: 3rem;
+    }
+}
+
 /* Made by Reef, BA Modern History and German 2019 - 2025 */
