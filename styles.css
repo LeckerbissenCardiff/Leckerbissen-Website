@@ -215,7 +215,7 @@ footer {
 }
 
 .padlet-embed {
-    width: 100vw !important;
+    width: 95vw !important;
     margin-left: calc(-50vw + 50%);
 }
 
