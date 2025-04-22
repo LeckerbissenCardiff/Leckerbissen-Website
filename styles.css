@@ -216,7 +216,6 @@ footer {
 
 .padlet-embed {
     width: 90vw;
-    max-width: 863px;
     margin-left: calc(50% - 45vw);
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 12px;
@@ -228,6 +227,7 @@ footer {
 
 .padlet-embed iframe {
     width: 100%;
+    max-width: 920px;
     height: 608px;
     display: block;
     border: none;
