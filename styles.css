@@ -43,7 +43,7 @@ h1 {
 
 h2 {
     font-family: 'BerlinType';
-    font-size: clamp(2rem, calc(1.5vw), 2.5rem);
+    font-size: clamp(2rem, 5vw, 4rem);
     font-weight: bold;
 }
 
@@ -223,6 +223,7 @@ footer {
 .padlet-embed {
     width: 90vw;
     max-width: 740px;
+    margin: 0 auto;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 24px;
     box-sizing: border-box;
