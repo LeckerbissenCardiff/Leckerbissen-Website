@@ -217,7 +217,6 @@ footer {
 .padlet-embed {
     width: 90vw;
     max-width: 740px;
-    margin-left: calc(50% - 45vw);
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 12px;
     box-sizing: border-box;
