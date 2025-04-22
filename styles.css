@@ -215,9 +215,9 @@ footer {
 }
 
 .padlet-embed {
-  width: 95%;
-  height: 95vh;
-  border: 1px solid rgba(0,0,0,0.1);
+  width: 90vw;
+  margin-left: calc(50% - 45vw);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   box-sizing: border-box;
   overflow: hidden;
@@ -230,7 +230,7 @@ footer {
   height: 100%;
   display: block;
   border: none;
-  border-radius: 12px;
+  border-radius: 12px; /* match container’s rounding */
 }
 
 /* Made by Reef, BA Modern History and German 2019 - 2025 */
