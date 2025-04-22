@@ -227,7 +227,6 @@ footer {
 
 .padlet-embed iframe {
     width: 100%;
-    max-width: 920px;
     height: 608px;
     display: block;
     border: none;
