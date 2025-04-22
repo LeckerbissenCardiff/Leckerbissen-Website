@@ -214,4 +214,9 @@ footer {
     }
 }
 
+.padlet-embed {
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%);
+}
+
 /* Made by Reef, BA Modern History and German 2019 - 2025 */
