@@ -271,6 +271,25 @@ footer {
         left: 20px;
     }
 
+    .hamburger-btn::before {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: white;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .hamburger-btn.is-active::before {
+        opacity: 0;
+    }
+
     .menu-panel {
         top: auto;
         bottom: 60px;
