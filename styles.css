@@ -133,7 +133,7 @@ h1 {
     font-family: 'BerlinType';
     font-size: clamp(1rem, calc(2vw), 3.2rem);
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 0px;
     margin-bottom: 30px;
 }
 
