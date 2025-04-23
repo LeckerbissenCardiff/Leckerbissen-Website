@@ -283,7 +283,6 @@ footer {
         transform: translate(-50%, -50%);
         z-index: -1;
         opacity: 1;
-        transition: opacity 0.3s ease-in-out;
     }
 
     .hamburger-btn.is-active::before {
