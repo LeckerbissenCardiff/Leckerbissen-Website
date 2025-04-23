@@ -6,6 +6,76 @@
     <title>404 - Seite nicht gefunden</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; 
+            background-color: #f0f0f0; 
+            margin: 0;
+            font-family: 'adobe-garamond-pro', serif; 
+        }
+        
+        .sticker {
+            width: 480px; 
+            height: 280px; 
+            background-color: #FFED00; 
+            color: #000000; 
+            border-radius: 50%; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px 40px; 
+            box-sizing: border-box; 
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .sticker p {
+            margin: 5px 0; 
+        }
+        
+        .line1 {
+            font-size: 2.8em; 
+            font-weight: 700; 
+            margin-bottom: 10px; 
+        }
+        
+        .line2 {
+            font-size: 1.1em; 
+            font-weight: 400;
+            margin-bottom: 15px; 
+        }
+        
+        .crest {
+            width: 45px; 
+            height: auto; 
+            display: block; 
+            margin-top: 10px; 
+            margin-bottom: 8px; 
+            filter: grayscale(100%); 
+        }
+        
+        .line3 {
+            font-size: 0.9em; 
+            font-weight: 400;
+        }
+        
+        @media (max-width: 600px) {
+            .sticker {
+                width: 90vw; 
+                height: calc(90vw * (280 / 480)); 
+                padding: 15px 25px;
+            }
+        
+            .line1 { font-size: 1.8em; margin-bottom: 8px; }
+            .line2 { font-size: 0.8em; margin-bottom: 10px; }
+            .crest { width: 30px; margin-top: 5px; margin-bottom: 5px; }
+            .line3 { font-size: 0.7em; }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -17,11 +87,13 @@
     
     <main>
         <h1>404 - Page not found</h1>
-        <div class="error-container">
-            <a href="https://www.leckerbissen.co.uk/">
-                <img src="https://leckerbissencardiff.wordpress.com/wp-content/uploads/2025/04/img_0588.webp" alt="Bernd das Brot" id="logo">
-            </a>
-            <p>Nett hier. Aber waren Sie schon mal auf der Homepage?</p>
+        <div class="sticker">
+            <p class="line1">Nett hier.</p>
+            <p class="line2">Aber waren Sie schon mal in Baden-Württemberg?</p>
+        
+            <img class="crest" src="https://raw.githubusercontent.com/LeckerbissenCardiff/Leckerbissen-Website/refs/heads/main/favicon.png" alt="Leckerbissen logo">
+          
+            <p class="line3">Baden-Württemberg</p>
         </div>
     </main>
     
