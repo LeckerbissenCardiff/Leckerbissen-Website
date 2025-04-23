@@ -104,14 +104,13 @@ html, body {
 
 .menu-panel ul li a {
     text-decoration: none;
-    color: #333;
     font-size: 1.1rem; 
     font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
 }
 
 .menu-panel ul li a:hover {
-    color: #000;
-    text-decoration: underline;
+    color: #dcdcdc;
 }
 
 header {
