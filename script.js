@@ -55,6 +55,35 @@ async function fetchPosts() {
 
 document.addEventListener('DOMContentLoaded', fetchPosts);
 
+document.addEventListener("DOMContentLoaded", function () {
+    const hamburgerBtn = document.getElementById("hamburger-btn");
+    const menuPanel = document.getElementById("menu-panel");
+
+    function toggleMenu() {
+        menuPanel.classList.toggle("active");
+        hamburgerBtn.classList.toggle("is-active");
+    }
+
+    hamburgerBtn.addEventListener("click", function(event) {
+        event.stopPropagation();
+        toggleMenu();
+    });
+
+    document.addEventListener("click", function (event) {
+        if (menuPanel.classList.contains("active") && !menuPanel.contains(event.target) && !hamburgerBtn.contains(event.target)) {
+            toggleMenu();
+        }
+    });
+
+    menuPanel.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function() {
+             if (menuPanel.classList.contains("active")) {
+                toggleMenu();
+             }
+        });
+    });
+
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     const banner = document.getElementById("cookie-banner");
