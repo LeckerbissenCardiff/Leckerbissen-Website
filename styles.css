@@ -143,6 +143,11 @@ h2 {
     font-weight: bold;
 }
 
+h3 {
+    font-size: clamp(2rem, 1.5vw, 4rem);
+    font-weight: bold;
+}
+
 #post-container {
     width: 70%;
     margin-bottom: 40px;
