@@ -410,6 +410,16 @@ footer {
     border-radius: 12px;
 }
 
+.link-boxes-container {
+    display: flex;
+    gap: 20px;
+    width: 70%;
+    max-width: 700px;
+    margin: 40px auto;
+    justify-content: center;
+    align-items: stretch;
+}
+
 .link-box {
     flex: 1;
     display: block;
@@ -421,7 +431,8 @@ footer {
     text-decoration: none;
 }
 
-.link-box:hover, .link-box:focus {
+.link-box:hover,
+.link-box:focus {
     transform: scale(1.03);
     border-color: #bbb;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -444,8 +455,9 @@ footer {
 @media (max-width: 600px) {
     .link-boxes-container {
         flex-direction: column;
-        width: 90%;
+        width: 90%; /* Mobile width usually stays wider */
         gap: 15px;
+        max-width: none; /* Remove max-width for stacked mobile view */
     }
 
     .link-box img {
